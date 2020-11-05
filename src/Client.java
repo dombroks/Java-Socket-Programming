@@ -6,16 +6,16 @@ import java.io.*;
 
 public class Client {
 
-    public static Command consulter(int CCP) {
+    public static Command check(int CCP) {
         return new Command("Consulter", CCP);
     }
 
-    public static Command debiter(int CCP, float somme) {
-        return new Command("Debiter", CCP, somme);
+    public static Command debit(int CCP, float sum) {
+        return new Command("Debiter", CCP, sum);
     }
 
-    public static Command crediter(int CCP, float somme) {
-        return new Command("Crediter", CCP, somme);
+    public static Command credit(int CCP, float sum) {
+        return new Command("Crediter", CCP, sum);
     }
 
 
@@ -34,7 +34,7 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
 
             //Sending
-            outputStream.writeObject(debiter(120,300));
+            outputStream.writeObject(debit(120, 300));
 
             //Receiving
             Triplet t = (Triplet) inputStream.readObject();
