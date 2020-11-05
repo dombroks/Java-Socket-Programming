@@ -11,6 +11,18 @@ public class Triplet implements Serializable {
         this.thirdParam = third;
     }
 
+    public String getFirstParam() {
+        return firstParam;
+    }
+
+    public String getSecondParam() {
+        return secondParam;
+    }
+
+    public String getThirdParam() {
+        return thirdParam;
+    }
+
     @Override
     public String toString() {
         return "Triplet{" +

@@ -3,7 +3,7 @@ import java.io.*;
 
 public class Client {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
 
         String serverName = "localhost";
         int port = 6066;
@@ -18,7 +18,7 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
 
             //Sending
-            Commande c = new Commande("Consulter", 121);
+            Commande c = new Commande("Consulter", 120);
             outputStream.writeObject(c);
 
             //Receiving
@@ -28,8 +28,6 @@ public class Client {
 
             client.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

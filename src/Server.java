@@ -91,13 +91,15 @@ public class Server extends Thread {
 
                 System.out.println("Just connected to " + server.getRemoteSocketAddress());
 
-                // object
+
                 ObjectOutputStream outputStream = new ObjectOutputStream(server.getOutputStream());
                 ObjectInputStream inputStream = new ObjectInputStream(server.getInputStream());
 
 
                 Commande c = (Commande) inputStream.readObject();
-                if (c.getNature() == "Consulter") {
+
+
+                if (c.getNature().contains("Consulter")) {
                     int ccp = c.getCCP();
                     Triplet t = consulter(ccp);
                     outputStream.writeObject(t);
