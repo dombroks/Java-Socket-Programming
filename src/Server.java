@@ -36,6 +36,7 @@ public class Server extends Thread {
     }
 
     public static String debiter(int CCP, int Somme) {
+        Triplet t = null ;
         String ccp = String.valueOf(CCP);
         File file = new File("/home/dom/Desktop/comptes.ccp.txt");
         Scanner sc = null;

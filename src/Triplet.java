@@ -1,14 +1,26 @@
 import java.io.Serializable;
 
 public class Triplet implements Serializable {
-    private final String firstParam;
-    private final String secondParam;
-    private final String thirdParam;
+    private String firstParam;
+    private String secondParam;
+    private String thirdParam;
 
     public Triplet(String first, String second, String third) {
         this.firstParam = first;
         this.secondParam = second;
         this.thirdParam = third;
+    }
+
+    public void setFirstParam(String firstParam) {
+        this.firstParam = firstParam;
+    }
+
+    public void setSecondParam(String secondParam) {
+        this.secondParam = secondParam;
+    }
+
+    public void setThirdParam(String thirdParam) {
+        this.thirdParam = thirdParam;
     }
 
     public String getFirstParam() {
