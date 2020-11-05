@@ -12,7 +12,7 @@ public class Client {
             Socket client = new Socket(serverName, port);
             System.out.println("Just connected to " + client.getRemoteSocketAddress());
 
-            // object
+
             ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
             Commande c = new Commande("Consulter",121) ;
