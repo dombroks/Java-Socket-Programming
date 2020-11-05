@@ -152,7 +152,6 @@ public class Server extends Thread {
             String fileContents = buffer.toString();
             sc.close();
             fileContents = fileContents.replaceAll(oldLine, newLine);
-            System.out.println(fileContents);
 
             FileWriter writer = new FileWriter(PATH_TO_FILE);
             writer.append(fileContents);
