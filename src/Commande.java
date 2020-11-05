@@ -1,27 +1,28 @@
 import java.io.Serializable;
 
 public class Commande implements Serializable {
-    private String nature;
+    private String Nature;
     private int CCP;
     private Float Somme;
 
     public Commande(String nature, int CCP, Float Somme) {
-        this.nature = nature;
+        this.Nature = nature;
         this.CCP = CCP;
         this.Somme = Somme;
     }
 
+
     public Commande(String nature, int CCP) {
-        this.nature = nature;
+        this.Nature = nature;
         this.CCP = CCP;
     }
 
     public String getNature() {
-        return nature;
+        return Nature;
     }
 
     public void setNature(String nature) {
-        this.nature = nature;
+        this.Nature = nature;
     }
 
     public int getCCP() {
