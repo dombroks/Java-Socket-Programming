@@ -71,6 +71,7 @@ public class Server extends Thread {
     }
 
     public static Triplet consulter(int CCP) {
+        t = new Triplet("0", "Inexistant", "0");
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -80,7 +81,7 @@ public class Server extends Thread {
         }
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
-                t = new Triplet(ccp.toString(), sc.nextLine(), sc.nextLine());
+                t = new Triplet(ccp, sc.nextLine(), sc.nextLine());
                 break;
             }
         }
