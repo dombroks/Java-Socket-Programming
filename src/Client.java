@@ -5,6 +5,21 @@ import java.net.*;
 import java.io.*;
 
 public class Client {
+    public static Commande consulter(int CCP) {
+        Commande c = new Commande("Consulter", CCP);
+        return c;
+    }
+
+    public static Commande debiter(int CCP, float somme) {
+        Commande c = new Commande("Debiter", CCP, somme);
+        return c;
+    }
+
+    public static Commande crediter(int CCP, float somme) {
+        Commande c = new Commande("Crediter", CCP, somme);
+        return c;
+    }
+
 
     public static void main(String[] args) throws ClassNotFoundException {
 
@@ -21,8 +36,7 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
 
             //Sending
-            Commande c = new Commande("Debiter", 120, (float) 100);
-            outputStream.writeObject(c);
+            outputStream.writeObject(consulter(121));
 
             //Receiving
             Triplet t = (Triplet) inputStream.readObject();
