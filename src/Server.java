@@ -140,6 +140,9 @@ public class Server extends Thread {
             }
         }
     }
+    private static void updateFile(){
+
+    }
     public static void main(String[] args) {
         int port = 6066;
         try {
