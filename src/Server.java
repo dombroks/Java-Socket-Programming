@@ -1,12 +1,13 @@
-
-import java.net.*;
 import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.Scanner;
 
 public class Server extends Thread {
-    private ServerSocket serverSocket;
     private static final File file = new File("/home/dom/Desktop/comptes.ccp.txt");
     private static Triplet t = null;
+    private ServerSocket serverSocket;
 
 
     public Server(int port) throws IOException {
@@ -83,6 +84,15 @@ public class Server extends Thread {
         return t;
     }
 
+    public static void main(String[] args) {
+        int port = 6066;
+        try {
+            Thread t = new Server(port);
+            t.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void run() {
         while (true) {
@@ -119,16 +129,6 @@ public class Server extends Thread {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    public static void main(String[] args) {
-        int port = 6066;
-        try {
-            Thread t = new Server(port);
-            t.start();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
