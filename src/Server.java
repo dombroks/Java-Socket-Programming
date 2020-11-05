@@ -36,12 +36,11 @@ public class Server extends Thread {
                 triplet.setFirstParam(ccp);
                 triplet.setSecondParam(nom);
                 triplet.setThirdParam(f.toString());
+                updateFile(s, f.toString());
                 return triplet;
             }
         }
         return triplet;
-
-
     }
 
     public static Triplet debiter(int CCP, float Somme) {
@@ -53,7 +52,7 @@ public class Server extends Thread {
             e.printStackTrace();
         }
         triplet = new Triplet("0", "Solde insuffisant", "0");
-        updateFile("dom broks", "newValue");
+
 
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
@@ -66,6 +65,7 @@ public class Server extends Thread {
                     triplet.setFirstParam(ccp);
                     triplet.setSecondParam(nom);
                     triplet.setThirdParam(f.toString());
+                    updateFile(s, f.toString());
                     return triplet;
                 }
             }
@@ -151,7 +151,7 @@ public class Server extends Thread {
             }
             String fileContents = buffer.toString();
             sc.close();
-            fileContents.replaceAll(oldLine, newLine);
+            fileContents = fileContents.replaceAll(oldLine, newLine);
             System.out.println(fileContents);
 
             FileWriter writer = new FileWriter(PATH_TO_FILE);
