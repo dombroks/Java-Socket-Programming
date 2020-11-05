@@ -20,7 +20,6 @@ public class Client {
             //Sending
             Commande c = new Commande("Consulter", 121);
             outputStream.writeObject(c);
-            outputStream.close();
 
             //Receiving
             Triplet t = (Triplet) inputStream.readObject();
