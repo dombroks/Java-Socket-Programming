@@ -5,66 +5,69 @@ import java.util.Scanner;
 
 public class Server extends Thread {
     private ServerSocket serverSocket;
+    private static final File file = new File("/home/dom/Desktop/comptes.ccp.txt");
+    private static Triplet t = null;
+
 
     public Server(int port) throws IOException {
         serverSocket = new ServerSocket(port);
         serverSocket.setSoTimeout(50000);
     }
 
-    public static String crediter(int CCP, int Somme) {
+    public static Triplet crediter(int CCP, int Somme) {
         String ccp = String.valueOf(CCP);
-        File file = new File("/home/dom/Desktop/comptes.ccp.txt");
-
         Scanner sc = null;
         try {
             sc = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String info = "(0," + "Solde insuffisant" + ",0)";
+        t = new Triplet("0", "solde insuffisant", "0");
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 String nom = sc.nextLine();
                 String s = sc.nextLine();
                 Float f = Float.parseFloat(s) + Somme;
-                return "(" + ccp + "," + nom + "," + f + ")";
+                t.setFirstParam(ccp);
+                t.setSecondParam(nom);
+                t.setThirdParam(f.toString());
+                return t;
             }
         }
-        return info;
+        return t;
 
 
     }
 
-    public static String debiter(int CCP, int Somme) {
-        Triplet t = null ;
+    public static Triplet debiter(int CCP, int Somme) {
         String ccp = String.valueOf(CCP);
-        File file = new File("/home/dom/Desktop/comptes.ccp.txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String info = "(0," + "Solde insuffisant" + ",0)";
+        t = new Triplet("0", "Solde insuffisant", "0");
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 String nom = sc.nextLine();
                 String s = sc.nextLine();
                 if (Float.parseFloat(s) < Somme) {
-                    return info;
+                    return t;
                 } else {
                     Float f = Float.parseFloat(s) - Somme;
-                    return "(" + ccp + "," + nom + "," + f + ")";
+                    t.setFirstParam(ccp);
+                    t.setSecondParam(nom);
+                    t.setThirdParam(f.toString());
+                    return t;
                 }
             }
         }
-        return info;
+        return t;
     }
 
     public static Triplet consulter(int CCP) {
-        Triplet t = null;
         String ccp = String.valueOf(CCP);
-        File file = new File("/home/dom/Desktop/comptes.ccp.txt");
         Scanner sc = null;
         try {
             sc = new Scanner(file);
