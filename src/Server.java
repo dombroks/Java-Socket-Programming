@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Server extends Thread {
     private static final String PATH_TO_FILE = "/home/dom/IdeaProjects/CCP/comptes.ccp.txt";
-    private static final File file = new File(PATH_TO_FILE);
+    private static  File file = new File(PATH_TO_FILE);
     private static Triplet triplet ;
     private final ServerSocket serverSocket;
 
