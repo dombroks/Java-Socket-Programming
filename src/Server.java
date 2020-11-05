@@ -109,7 +109,7 @@ public class Server extends Thread {
 
 
                 Commande c = (Commande) inputStream.readObject();
-                String operation = c.getNature();
+                String operation = c.getOperation();
 
                 if (operation.contains("Consulter")) {
                     int ccp = c.getCCP();
