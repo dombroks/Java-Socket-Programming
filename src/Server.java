@@ -60,7 +60,8 @@ public class Server extends Thread {
         return info;
     }
 
-    public static String consulter(int CCP) {
+    public static Triplet consulter(int CCP) {
+        Triplet t = null;
         String ccp = String.valueOf(CCP);
         File file = new File("/home/dom/Desktop/comptes.ccp.txt");
         Scanner sc = null;
@@ -72,11 +73,12 @@ public class Server extends Thread {
         String info = "(0," + "Inexitant" + ",0)";
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
+                t = new Triplet(ccp.toString(), sc.nextLine(), sc.nextLine());
                 info = "(" + ccp + "," + sc.nextLine() + "," + sc.nextLine() + ")";
                 break;
             }
         }
-        return info;
+        return t;
     }
 
 
@@ -95,7 +97,11 @@ public class Server extends Thread {
 
 
                 Commande c = (Commande) inputStream.readObject();
-                System.out.println(c.getNature());
+                if (c.getNature() == "Consulter") {
+                    int ccp = c.getCCP();
+                    Triplet t = consulter(ccp);
+                    outputStream.writeObject(t);
+                }
 
                 server.close();
 
