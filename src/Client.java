@@ -18,7 +18,7 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
 
             //Sending
-            Commande c = new Commande("Consulter", 120);
+            Commande c = new Commande("Debiter", 120, (float) 100);
             outputStream.writeObject(c);
 
             //Receiving
