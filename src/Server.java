@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Server extends Thread {
     private static final File file = new File("/home/dom/Desktop/comptes.ccp.txt");
     private static Triplet t = null;
-    private ServerSocket serverSocket;
+    private final ServerSocket serverSocket;
 
 
     public Server(int port) throws IOException {
@@ -126,6 +126,7 @@ public class Server extends Thread {
                     int ccp = c.getCCP();
                     float somme = c.getSomme();
                     Triplet t = crediter(ccp, somme);
+                    outputStream.writeObject(t);
                 } else System.out.println("unknown operation");
 
 
