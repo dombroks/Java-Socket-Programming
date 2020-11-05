@@ -1,3 +1,6 @@
+import model.Commande;
+import model.Triplet;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;

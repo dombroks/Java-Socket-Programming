@@ -1,3 +1,6 @@
+import model.Commande;
+import model.Triplet;
+
 import java.net.*;
 import java.io.*;
 
