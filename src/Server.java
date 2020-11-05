@@ -103,6 +103,7 @@ public class Server extends Thread {
                     outputStream.writeObject(t);
                 }
 
+
                 server.close();
 
             } catch (SocketTimeoutException s) {
