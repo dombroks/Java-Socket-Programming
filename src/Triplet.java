@@ -1,22 +1,22 @@
 import java.io.Serializable;
 
 public class Triplet implements Serializable {
-    private String first;
-    private String second;
-    private String third;
+    private final String firstParam;
+    private final String secondParam;
+    private final String thirdParam;
 
     public Triplet(String first, String second, String third) {
-        this.first = first;
-        this.second = second;
-        this.third = third;
+        this.firstParam = first;
+        this.secondParam = second;
+        this.thirdParam = third;
     }
 
     @Override
     public String toString() {
         return "Triplet{" +
-                "first='" + first + '\'' +
-                ", second='" + second + '\'' +
-                ", third='" + third + '\'' +
+                "first='" + firstParam + '\'' +
+                ", second='" + secondParam + '\'' +
+                ", third='" + thirdParam + '\'' +
                 '}';
     }
 }
