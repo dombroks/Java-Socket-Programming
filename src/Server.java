@@ -89,15 +89,7 @@ public class Server extends Thread {
         return triplet;
     }
 
-    public static void main(String[] args) {
-        int port = 6066;
-        try {
-            Thread t = new Server(port);
-            t.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void run() {
         while (true) {
@@ -146,6 +138,15 @@ public class Server extends Thread {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+    }
+    public static void main(String[] args) {
+        int port = 6066;
+        try {
+            Thread t = new Server(port);
+            t.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
