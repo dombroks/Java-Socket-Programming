@@ -5,19 +5,17 @@ import java.net.*;
 import java.io.*;
 
 public class Client {
+
     public static Commande consulter(int CCP) {
-        Commande c = new Commande("Consulter", CCP);
-        return c;
+        return new Commande("Consulter", CCP);
     }
 
     public static Commande debiter(int CCP, float somme) {
-        Commande c = new Commande("Debiter", CCP, somme);
-        return c;
+        return new Commande("Debiter", CCP, somme);
     }
 
     public static Commande crediter(int CCP, float somme) {
-        Commande c = new Commande("Crediter", CCP, somme);
-        return c;
+        return new Commande("Crediter", CCP, somme);
     }
 
 
