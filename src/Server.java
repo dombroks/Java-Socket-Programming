@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Server extends Thread {
     private static final String PATH_TO_FILE = "/home/dom/IdeaProjects/CCP/comptes.ccp.txt";
     private static final File file = new File(PATH_TO_FILE);
-    private static Triplet t = null;
+    private static Triplet triplet = null;
     private final ServerSocket serverSocket;
 
 
@@ -27,19 +27,19 @@ public class Server extends Thread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        t = new Triplet("0", "solde insuffisant", "0");
+        triplet = new Triplet("0", "solde insuffisant", "0");
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 String nom = sc.nextLine();
                 String s = sc.nextLine();
                 Float f = Float.parseFloat(s) + Somme;
-                t.setFirstParam(ccp);
-                t.setSecondParam(nom);
-                t.setThirdParam(f.toString());
-                return t;
+                triplet.setFirstParam(ccp);
+                triplet.setSecondParam(nom);
+                triplet.setThirdParam(f.toString());
+                return triplet;
             }
         }
-        return t;
+        return triplet;
 
 
     }
@@ -52,27 +52,27 @@ public class Server extends Thread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        t = new Triplet("0", "Solde insuffisant", "0");
+        triplet = new Triplet("0", "Solde insuffisant", "0");
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 String nom = sc.nextLine();
                 String s = sc.nextLine();
                 if (Float.parseFloat(s) < Somme) {
-                    return t;
+                    return triplet;
                 } else {
                     Float f = Float.parseFloat(s) - Somme;
-                    t.setFirstParam(ccp);
-                    t.setSecondParam(nom);
-                    t.setThirdParam(f.toString());
-                    return t;
+                    triplet.setFirstParam(ccp);
+                    triplet.setSecondParam(nom);
+                    triplet.setThirdParam(f.toString());
+                    return triplet;
                 }
             }
         }
-        return t;
+        return triplet;
     }
 
     public static Triplet consulter(int CCP) {
-        t = new Triplet("0", "Inexistant", "0");
+        triplet = new Triplet("0", "Inexistant", "0");
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -82,11 +82,11 @@ public class Server extends Thread {
         }
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
-                t = new Triplet(ccp, sc.nextLine(), sc.nextLine());
+                triplet = new Triplet(ccp, sc.nextLine(), sc.nextLine());
                 break;
             }
         }
-        return t;
+        return triplet;
     }
 
     public static void main(String[] args) {
