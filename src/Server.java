@@ -15,7 +15,7 @@ public class Server extends Thread {
         serverSocket.setSoTimeout(50000);
     }
 
-    public static Triplet crediter(int CCP, int Somme) {
+    public static Triplet crediter(int CCP, float Somme) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -40,7 +40,7 @@ public class Server extends Thread {
 
     }
 
-    public static Triplet debiter(int CCP, int Somme) {
+    public static Triplet debiter(int CCP, float Somme) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -109,13 +109,24 @@ public class Server extends Thread {
 
 
                 Commande c = (Commande) inputStream.readObject();
+                String operation = c.getNature();
 
-
-                if (c.getNature().contains("Consulter")) {
+                if (operation.contains("Consulter")) {
                     int ccp = c.getCCP();
                     Triplet t = consulter(ccp);
                     outputStream.writeObject(t);
-                }
+                } else if (operation.contains("Debiter")) {
+                    int ccp = c.getCCP();
+                    Float somme = c.getSomme();
+                    Triplet t = debiter(ccp, somme);
+                    outputStream.writeObject(t);
+
+
+                } else if (operation.contains("Crediter")) {
+                    int ccp = c.getCCP();
+                    float somme = c.getSomme();
+                    Triplet t = crediter(ccp, somme);
+                } else System.out.println("unknown operation");
 
 
                 server.close();
