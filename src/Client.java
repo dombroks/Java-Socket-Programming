@@ -34,7 +34,7 @@ public class Client {
             ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
 
             //Sending
-            outputStream.writeObject(consulter(121));
+            outputStream.writeObject(debiter(120,300));
 
             //Receiving
             Triplet t = (Triplet) inputStream.readObject();

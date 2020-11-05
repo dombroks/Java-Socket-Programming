@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Server extends Thread {
     private static final String PATH_TO_FILE = "/home/dom/IdeaProjects/CCP/comptes.ccp.txt";
-    private static  File file = new File(PATH_TO_FILE);
-    private static Triplet triplet ;
+    private static File file = new File(PATH_TO_FILE);
+    private static Triplet triplet;
     private final ServerSocket serverSocket;
 
 
@@ -53,6 +53,8 @@ public class Server extends Thread {
             e.printStackTrace();
         }
         triplet = new Triplet("0", "Solde insuffisant", "0");
+        updateFile("dom broks", "newValue");
+
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 String nom = sc.nextLine();
@@ -88,7 +90,6 @@ public class Server extends Thread {
         }
         return triplet;
     }
-
 
 
     public void run() {
@@ -140,9 +141,30 @@ public class Server extends Thread {
             }
         }
     }
-    private static void updateFile(){
 
+    private static void updateFile(String oldLine, String newLine) {
+        try {
+            Scanner sc = new Scanner(file);
+            StringBuffer buffer = new StringBuffer();
+            while (sc.hasNextLine()) {
+                buffer.append(sc.nextLine() + "\n");
+            }
+            String fileContents = buffer.toString();
+            sc.close();
+            fileContents.replaceAll(oldLine, newLine);
+            System.out.println(fileContents);
+
+            FileWriter writer = new FileWriter(PATH_TO_FILE);
+            writer.append(fileContents);
+            writer.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
     public static void main(String[] args) {
         int port = 6066;
         try {
