@@ -37,10 +37,10 @@ public class Triplet implements Serializable {
 
     @Override
     public String toString() {
-        return "Triplet{" +
-                "first='" + firstParam + '\'' +
-                ", second='" + secondParam + '\'' +
-                ", third='" + thirdParam + '\'' +
-                '}';
+        return "(" +
+                firstParam +
+                ", " + secondParam +
+                ", " + thirdParam +
+                ')';
     }
 }
