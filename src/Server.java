@@ -70,11 +70,9 @@ public class Server extends Thread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String info = "(0," + "Inexitant" + ",0)";
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
                 t = new Triplet(ccp.toString(), sc.nextLine(), sc.nextLine());
-                info = "(" + ccp + "," + sc.nextLine() + "," + sc.nextLine() + ")";
                 break;
             }
         }
