@@ -1,4 +1,4 @@
-import model.Commande;
+import model.Command;
 import model.Triplet;
 
 import java.net.*;
@@ -6,16 +6,16 @@ import java.io.*;
 
 public class Client {
 
-    public static Commande consulter(int CCP) {
-        return new Commande("Consulter", CCP);
+    public static Command consulter(int CCP) {
+        return new Command("Consulter", CCP);
     }
 
-    public static Commande debiter(int CCP, float somme) {
-        return new Commande("Debiter", CCP, somme);
+    public static Command debiter(int CCP, float somme) {
+        return new Command("Debiter", CCP, somme);
     }
 
-    public static Commande crediter(int CCP, float somme) {
-        return new Commande("Crediter", CCP, somme);
+    public static Command crediter(int CCP, float somme) {
+        return new Command("Crediter", CCP, somme);
     }
 
 

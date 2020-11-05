@@ -2,19 +2,19 @@ package model;
 
 import java.io.Serializable;
 
-public class Commande implements Serializable {
+public class Command implements Serializable {
     private String Operation;
     private int CCP;
-    private Float Somme;
+    private Float Sum;
 
-    public Commande(String operation, int CCP, Float Somme) {
+    public Command(String operation, int CCP, Float Sum) {
         this.Operation = operation;
         this.CCP = CCP;
-        this.Somme = Somme;
+        this.Sum = Sum;
     }
 
 
-    public Commande(String operation, int CCP) {
+    public Command(String operation, int CCP) {
         this.Operation = operation;
         this.CCP = CCP;
     }
@@ -35,12 +35,12 @@ public class Commande implements Serializable {
         this.CCP = CCP;
     }
 
-    public Float getSomme() {
-        return Somme;
+    public Float getSum() {
+        return Sum;
     }
 
-    public void setSomme(Float somme) {
-        Somme = somme;
+    public void setSum(Float sum) {
+        Sum = sum;
     }
 
 

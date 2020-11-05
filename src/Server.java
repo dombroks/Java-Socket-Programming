@@ -1,4 +1,4 @@
-import model.Commande;
+import model.Command;
 import model.Triplet;
 
 import java.io.*;
@@ -19,7 +19,7 @@ public class Server extends Thread {
         serverSocket.setSoTimeout(50000);
     }
 
-    public static Triplet crediter(int CCP, float Somme) {
+    public static Triplet credit(int CCP, float Sum) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -27,14 +27,14 @@ public class Server extends Thread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        triplet = new Triplet("0", "solde insuffisant", "0");
+        triplet = new Triplet("0", "insufficient balance", "0");
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
-                String nom = sc.nextLine();
+                String name = sc.nextLine();
                 String s = sc.nextLine();
-                Float f = Float.parseFloat(s) + Somme;
+                Float f = Float.parseFloat(s) + Sum;
                 triplet.setFirstParam(ccp);
-                triplet.setSecondParam(nom);
+                triplet.setSecondParam(name);
                 triplet.setThirdParam(f.toString());
                 updateFile(s, f.toString());
                 return triplet;
@@ -43,7 +43,7 @@ public class Server extends Thread {
         return triplet;
     }
 
-    public static Triplet debiter(int CCP, float Somme) {
+    public static Triplet debit(int CCP, float Sum) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -51,19 +51,19 @@ public class Server extends Thread {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        triplet = new Triplet("0", "Solde insuffisant", "0");
+        triplet = new Triplet("0", "insufficient balance", "0");
 
 
         while (sc.hasNextLine()) {
             if (sc.nextLine().matches(ccp)) {
-                String nom = sc.nextLine();
+                String name = sc.nextLine();
                 String s = sc.nextLine();
-                if (Float.parseFloat(s) < Somme) {
+                if (Float.parseFloat(s) < Sum) {
                     return triplet;
                 } else {
-                    Float f = Float.parseFloat(s) - Somme;
+                    Float f = Float.parseFloat(s) - Sum;
                     triplet.setFirstParam(ccp);
-                    triplet.setSecondParam(nom);
+                    triplet.setSecondParam(name);
                     triplet.setThirdParam(f.toString());
                     updateFile(s, f.toString());
                     return triplet;
@@ -73,8 +73,8 @@ public class Server extends Thread {
         return triplet;
     }
 
-    public static Triplet consulter(int CCP) {
-        triplet = new Triplet("0", "Inexistant", "0");
+    public static Triplet check(int CCP) {
+        triplet = new Triplet("0", "None", "0");
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -106,24 +106,24 @@ public class Server extends Thread {
                 ObjectInputStream inputStream = new ObjectInputStream(server.getInputStream());
 
 
-                Commande c = (Commande) inputStream.readObject();
+                Command c = (Command) inputStream.readObject();
                 String operation = c.getOperation();
 
                 if (operation.contains("Consulter")) {
                     int ccp = c.getCCP();
-                    Triplet t = consulter(ccp);
+                    Triplet t = check(ccp);
                     outputStream.writeObject(t);
                 } else if (operation.contains("Debiter")) {
                     int ccp = c.getCCP();
-                    Float somme = c.getSomme();
-                    Triplet t = debiter(ccp, somme);
+                    Float sum = c.getSum();
+                    Triplet t = debit(ccp, sum);
                     outputStream.writeObject(t);
 
 
                 } else if (operation.contains("Crediter")) {
                     int ccp = c.getCCP();
-                    float somme = c.getSomme();
-                    Triplet t = crediter(ccp, somme);
+                    float sum = c.getSum();
+                    Triplet t = credit(ccp, sum);
                     outputStream.writeObject(t);
                 } else System.out.println("unknown operation");
 
