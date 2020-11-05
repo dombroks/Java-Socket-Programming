@@ -88,16 +88,14 @@ public class Server extends Thread {
                 Socket server = serverSocket.accept();
 
                 System.out.println("Just connected to " + server.getRemoteSocketAddress());
-                DataInputStream in = new DataInputStream(server.getInputStream());
 
-                String message = in.readUTF();
-                DataOutputStream out = new DataOutputStream(server.getOutputStream());
+                // object
+                ObjectOutputStream outputStream = new ObjectOutputStream(server.getOutputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(server.getInputStream());
 
-                if (message.contains("Consulter")) {
-                    message.replace("Consulter", "");
-                    out.writeUTF( "Consulting" + consulter(120));
-                }
 
+                Commande c = (Commande) inputStream.readObject();
+                System.out.println(c.getNature());
 
                 server.close();
 
@@ -107,6 +105,8 @@ public class Server extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
                 break;
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }

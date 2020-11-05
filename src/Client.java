@@ -10,16 +10,14 @@ public class Client {
         try {
             System.out.println("Connecting to " + "localhost" + " on port " + port);
             Socket client = new Socket(serverName, port);
-
             System.out.println("Just connected to " + client.getRemoteSocketAddress());
-            OutputStream outToServer = client.getOutputStream();
-            DataOutputStream out = new DataOutputStream(outToServer);
 
-            out.writeUTF("Consulter150");
-            InputStream inFromServer = client.getInputStream();
-            DataInputStream in = new DataInputStream(inFromServer);
+            // object
+            ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
+            ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
+            Commande c = new Commande("Consulter",121) ;
+            outputStream.writeObject(c);
 
-            System.out.println("Server says " + in.readUTF());
             client.close();
         } catch (IOException e) {
             e.printStackTrace();
