@@ -50,7 +50,11 @@ public class Client extends Thread {
     }
 
     public static void main(String[] args) {
-        Thread client = new Client();
-        client.start();
+        // Running 3 clients
+        for (int i = 0; i < 3; i++) {
+            Thread client = new Client();
+            client.start();
+        }
+
     }
 }
