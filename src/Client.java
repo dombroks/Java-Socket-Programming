@@ -4,7 +4,7 @@ import model.Triplet;
 import java.net.*;
 import java.io.*;
 
-public class Client {
+public class Client extends Thread {
 
     public static Command check(int CCP) {
         return new Command("Consulter", CCP);
@@ -19,8 +19,7 @@ public class Client {
     }
 
 
-    public static void main(String[] args) throws ClassNotFoundException {
-
+    public void run() {
         String serverName = "localhost";
         int port = 6066;
 
@@ -42,8 +41,13 @@ public class Client {
 
 
             client.close();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        Thread client = new Client();
+        client.start();
     }
 }

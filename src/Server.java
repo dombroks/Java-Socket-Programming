@@ -7,7 +7,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.Scanner;
 
-public class Server extends Thread {
+public class Server {
     private static final String PATH_TO_FILE = "/home/dom/IdeaProjects/CCP/comptes.ccp.txt";
     private static File file = new File(PATH_TO_FILE);
     private static Triplet triplet;
@@ -167,8 +167,8 @@ public class Server extends Thread {
     public static void main(String[] args) {
         int port = 6066;
         try {
-            Thread t = new Server(port);
-            t.start();
+            Server server = new Server(port);
+            server.run();
         } catch (IOException e) {
             e.printStackTrace();
         }
