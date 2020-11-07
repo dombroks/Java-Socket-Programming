@@ -20,30 +20,33 @@ public class Client extends Thread {
 
 
     public void run() {
-        String serverName = "localhost";
-        int port = 6066;
+        while (true) {
+            String serverName = "localhost";
+            int port = 6066;
 
-        try {
-            System.out.println("Connecting to " + "localhost" + " on port " + port);
-            Socket client = new Socket(serverName, port);
-            System.out.println("Just connected to " + client.getRemoteSocketAddress());
-
-
-            ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
-            ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
-
-            //Sending
-            outputStream.writeObject(debit(120, 300));
-
-            //Receiving
-            Triplet t = (Triplet) inputStream.readObject();
-            System.out.println(t.toString());
+            try {
+                System.out.println("Connecting to " + "localhost" + " on port " + port);
+                Socket client = new Socket(serverName, port);
+                System.out.println("Just connected to " + client.getRemoteSocketAddress());
 
 
-            client.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+                ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
+
+                //Sending
+                outputStream.writeObject(debit(120, 300));
+
+                //Receiving
+                Triplet t = (Triplet) inputStream.readObject();
+                System.out.println(t.toString());
+
+                client.close();
+                break;
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public static void main(String[] args) {

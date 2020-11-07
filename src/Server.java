@@ -19,7 +19,7 @@ public class Server {
         serverSocket.setSoTimeout(50000);
     }
 
-    public static Triplet credit(int CCP, float Sum) {
+    public static synchronized Triplet credit(int CCP, float Sum) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -43,7 +43,7 @@ public class Server {
         return triplet;
     }
 
-    public static Triplet debit(int CCP, float Sum) {
+    public static synchronized Triplet debit(int CCP, float Sum) {
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
         try {
@@ -73,7 +73,7 @@ public class Server {
         return triplet;
     }
 
-    public static Triplet check(int CCP) {
+    public static synchronized Triplet check(int CCP) {
         triplet = new Triplet("0", "None", "0");
         String ccp = String.valueOf(CCP);
         Scanner sc = null;
@@ -98,9 +98,7 @@ public class Server {
                 System.out.println("Waiting for client on port " +
                         serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
-
                 System.out.println("Just connected to " + server.getRemoteSocketAddress());
-
 
                 ObjectOutputStream outputStream = new ObjectOutputStream(server.getOutputStream());
                 ObjectInputStream inputStream = new ObjectInputStream(server.getInputStream());
