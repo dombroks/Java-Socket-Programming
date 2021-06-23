@@ -1,6 +1,9 @@
 # Java-Socket-Programming
 Hands on sockets in Java
 
+
+![](Socket-programming.png)
+
 ## Java Socket Programming
 
 Java Socket programming is used for communication between the applications running on different JRE.
