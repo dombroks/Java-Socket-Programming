@@ -2,7 +2,7 @@
 Hands-on sockets in Java
 
 
- ![](socket-programming.png)
+ ![Credit: Javatpoint](socket-programming.png)
 
 ## Java Socket Programming
 
