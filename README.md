@@ -1,8 +1,8 @@
 # Java-Socket-Programming
-Hands on sockets in Java
+Hands-on sockets in Java
 
 
-![](Socket-programming.png)
+![](socket-programming.png)
 
 ## Java Socket Programming
 
