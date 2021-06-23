@@ -2,7 +2,7 @@
 Hands-on sockets in Java
 
 
- ![Credit: Javatpoint](socket-programming.png)
+ ![ALT](socket-programming.png "Credit: Javatpoint")
 
 ## Java Socket Programming
 
